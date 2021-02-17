@@ -10,7 +10,13 @@ let mainWindow;
 
 function createWindow() {
   // Create the browser window.
-  mainWindow = new BrowserWindow({ width: 800, height: 600 });
+  mainWindow = new BrowserWindow({
+    width: 800,
+    height: 600,
+    webPreferences: {
+      nodeIntegration: true,
+    },
+  });
 
   // and load the index.html of the app.
   mainWindow.loadURL("http://localhost:3000");
@@ -175,12 +181,15 @@ function openFile() {
     properties: ["openFile"],
     filters: [{ name: "Markdown", extensions: ["md", "markdown", "txt"] }],
   });
-  console.log(files[0]);
+
   if (!files) return;
 
   const file = files[0];
-
-  console.log("File Content...")
   const fileContent = fs.readFileSync(file).toString();
-  console.log(fileContent);
+
+  if (mainWindow) {
+    mainWindow.webContents.send("my-ipc-channel", {
+      message: fileContent,
+    });
+  }
 }

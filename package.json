@@ -12,10 +12,8 @@
     "web-vitals": "^1.1.0"
   },
   "main": "src/main.js",
-  "private": true,
   "devDependencies": {
-    "electron": "^1.4.14",
-    "react-scripts": "0.8.5"
+    "electron": "^11.2.3"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -41,8 +39,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "electron": "^11.2.3"
   }
 }
